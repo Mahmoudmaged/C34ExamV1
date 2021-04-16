@@ -1,0 +1,72 @@
+<%- include("shared/header") %> 
+<body id="login">
+    <div class="overlay">
+        <!-- ======================Registration form================================= -->
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-md-7 m-auto p-5">
+                    <div class="form p-5 ">
+                        <h2 class="text-center text-white">Registration</h2>
+                        <form action="/handelSignUp" method="POST">
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <input value="<%=oldInputs.fname%>" name="fname" type="text" class="form-control inp pt-3 <%=errors.find(data=>data.param == 'fname')?'is-invalid':''%>" placeholder="First Name">
+                                    <% if (errors.find(data=>data.param == 'fname')) { %>
+                                    <div class="alert alert-danger text-center my-1">
+                                        <p>Invalid first name</p>
+                                     </div>
+                                    <% } %>
+                                </div>
+                                <div class="col">
+                                    <input value="<%=oldInputs.lname%>" name="lname" type="text" class="form-control inp pt-3 <%=errors.find(data=>data.param == 'lname')?'is-invalid':''%>" placeholder="Last Name">
+                                    <% if (errors.find(data=>data.param == 'lname')) { %>
+                                     
+                                        <div class="alert alert-danger text-center my-1">
+                                            <p>Invalid last name</p>
+                                         </div>
+                                        <% } %>
+                                </div>
+                            </div>
+                            <input value="<%=oldInputs.uname%>"  name="uname" type="text" class="form-control inp pt-3 <%=errors.find(data=>data.param == 'uname')?'is-invalid':''%>" placeholder="Username">
+                            <% if (errors.find(data=>data.param == 'uname')) { %>
+                                     
+                                <div class="alert alert-danger text-center my-1">
+                                    <p>Invalid user Name</p>
+                                 </div>
+                                <% } %>
+                            <input value="<%=oldInputs.email%>" name="email" type="email" class="form-control inp pt-3 <%=errors.find(data=>data.param == 'email')?'is-invalid':''%>" placeholder="Email">
+                            <% if (errors.find(data=>data.param == 'email')) { %>
+                                     
+                                <div class="alert alert-danger text-center my-1">
+                                    <p>Invalid email</p>
+                                 </div>
+                                <% } %>
+                                <% if (emailExist=='true') { %>
+                                    <div class="alert alert-danger text-center my-1">
+                                        <p> email already exist</p>
+                                     </div>
+                                <% } %>
+                            <input  value="<%=oldInputs.password%>" name="password" type="password" class="form-control inp pt-3 mb-3 <%=errors.find(data=>data.param == 'password')?'is-invalid':''%>" placeholder="Password">
+                            <% if (errors.find(data=>data.param == 'password')) { %>
+                                     
+                                <div class="alert alert-danger text-center my-1">
+                                    <p>Invalid password</p>
+                                 </div>
+                                <% } %>
+                            <input  value="<%=oldInputs.Cpassword%>" name="Cpassword" type="password" class="form-control inp pt-3 mb-3 <%=errors.find(data=>data.param == 'Cpassword')?'is-invalid':''%>" placeholder="C-Password">
+                            <% if (errors.find(data=>data.param == 'Cpassword')) { %>
+                                     
+                                <div class="alert alert-danger text-center my-1">
+                                    <p>password must match C-password</p>
+                                 </div>
+                                <% } %>
+                            <button   type="submit " class="btn btn-outline-info text-white w-100">Sign Up</button>
+                            <p class="text-center pb-3"> <a href="/login" class="text-white mt-3 d-block">Sign In Here</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include("shared/footer") %> 

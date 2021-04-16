@@ -1,0 +1,110 @@
+<%- include("shared/header") %> 
+
+<body id="home">
+<%- include("shared/navBar") %> 
+   
+
+
+    <div class="cover">
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4 ">
+                <div class="person card pb-5 px-5  text-center">
+                    <img src="images/man.jpg" width="250" alt="">
+                </div>
+            </div>
+            <div class="col-md-8 pt-4">
+                <h2><%=userName%></h2>
+                <h4 class="text-muted">Full Stack Web</h4>
+                <% for( let i = 0; i < postsData.length; i++ ) { %>
+                    <div class="post card p-4 auto">
+                        <div class="media">
+                            <img src="images/man.jpg" width="60" class="mr-3" alt="...">
+                            <div class="media-body">
+                                <h5 class="mt-0"><%=postsData[i].userID.uname%></h5>
+                                <%=postsData[i].time%>
+                            </div>
+                            
+                            <i data-toggle="modal" data-target="#exampleModal" onclick="deleteByID('<%=postsData[i]._id%>')" class="fa fa-trash btn btn-danger mx-2"></i>
+                            <i  id="edit" data-toggle="modal" data-target="#editmodel" onclick="editByID('<%=postsData[i]._id%>')" class="fa fa-pen btn btn-primary mx-2"></i>
+                        </div>
+                        <hr>
+                        <h3 class="title"><%=postsData[i].title%></h3>
+                        <p class="pt-4 desc"><%=postsData[i].desc%></p>
+                    </div>
+                <% } %>
+               
+            </div>
+        </div>
+    </div>
+
+
+  
+  <!-- Delete Model -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/handelDeletePost" method="POST">
+        
+        <div class="modal-body text-center">
+            <input hidden id="DeleteInp" value="" name="id" class="form-control" >
+          <p> Are u sure ? <br> this process cannot be undo</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+  <!-- Edit Model -->
+
+  <div class="modal fade" id="editmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/handelUpdatePost" method="POST">
+        
+        <div class="modal-body text-center">
+            <div class="form-group my-2">
+                <input hidden id="EditInp" value="" name="id" class="form-control" >
+            </div>
+            <div class="form-group my-2">
+                <label> Title</label>
+                <input  id="titleInp" value="" name="title" class="form-control" >
+            </div>
+            <div class="form-group my-2">
+                <label> description</label>
+                <input  id="descInp" value="" name="desc" class="form-control" >
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+    <%- include("shared/footer") %> 
